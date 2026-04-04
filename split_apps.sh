@@ -23,7 +23,7 @@ if [ "$size" -gt 30 ]; then
 
     perm=$(stat -c %a "$apk")
 
-    split -b 20M -d "$apk" "$apk.part"
+    split -b 20M -d -a 2 "$apk" "$apk.part"
     (cd "$(dirname "$apk")" && sha256sum "$(basename "$apk").part"*) > "$apk.hash"
 
     rm -f "$apk"
